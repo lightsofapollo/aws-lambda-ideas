@@ -70,14 +70,15 @@ functions.
 Taskcluster (or even lambda if your packages are small) can easily then
 generate the lambda functions with the following algorithm:
 
-  -> Iterate through each package: derive name of function from hash of repository name + path
+  - Iterate through each package: derive name of function from hash of repository name + path
      1. Call get function
         a. Function does not exist go to 2.
         b. Function exists and description contains current revision of directory go to 4.
+        
      2. Bundle package. Initiate upload of package with hash as function
         name and the description as follows:
 
-        <repository path>@<revision>
+        `<repository path>@<revision>`
 
     3. Continue to next package.
 
@@ -86,5 +87,5 @@ updates another running updates).
 
 In a pure lambda pipeline something like this could be done:
 
-  -> Checkout vcs at revision X, upload to s3
-  -> Checkout vcs from s3 look for changes in each package.
+  - Checkout vcs at revision X, upload to s3
+  - Checkout vcs from s3 look for changes in each package.
