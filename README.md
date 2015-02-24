@@ -73,14 +73,12 @@ generate the lambda functions with the following algorithm:
   - Iterate through each package: derive name of function from hash of repository name + path
      1. Call get function
         a. Function does not exist go to 2.
-        b. Function exists and description contains current revision of directory go to 4.
+        b. Function exists and description contains current revision of directory continue to next package.
         
      2. Bundle package. Initiate upload of package with hash as function
-        name and the description as follows:
+        name and the description as follows: `<repository path>@<revision>`
 
-        `<repository path>@<revision>`
-
-    3. Continue to next package.
+     3. Continue to next package.
 
 The above could be run as multiple tasks/functions (one checking for
 updates another running updates).
